@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+@import 'variables';
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Kumbh Sans', sans-serif;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: linear-gradient(#af67e9, #6565e7);
+   height: 100vh;
+   padding: 3rem 1rem;
+}
+
+button {
+   font-family: inherit;
+   cursor: pointer;
+}
+
+.card {
+   position: relative;
+   max-width: 18.75rem;
+   background: #fff url('../images/bg-pattern-mobile.svg') no-repeat center 0 / 75%;
+   border-radius: 25px;
+   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+   margin-top: 6rem;
+   padding: 0;
+
+   &-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25%;
+      transform: translate(30%, -45%);
+      z-index: 10;
+   }
+
+   &-image {
+      img {
+         position: absolute;
+         top: 0;
+         left: 50%;
+         width: 75%;
+         height: auto;
+         transform: translate(-50%, -60%);
+      }
+   }
+
+   &-text {
+      text-align: center;
+      padding: 7rem 1rem 2rem;
+
+      .accordion {
+         &-item {
+            border-bottom: 1px solid $divider-color;
+            padding: 1rem 0;
+            font-size: 0.8rem;
+         }
+         &-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            width: 100%;
+            background-color: transparent;
+            color: $secondary-text-color;
+            border: none;
+            text-align: left;
+            font-size: 0.8rem;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+
+            img {
+               transition: transform 0.3s ease-in-out;
+            }
+
+            &:hover {
+               color: $text-hover-color;
+            }
+         }
+
+         .accordion-item.open .accordion-question {
+            font-weight: 700;
+            color: $primary-text-color;
+
+            img {
+               transform: rotate(180deg);
+            }
+
+            &:hover {
+               color: $text-hover-color;
+            }
+         }
+
+         &-collapse {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+
+            .accordion-content {
+               text-align: left;
+               font-size: 0.8rem;
+               color: $muted-text-color;
+               padding: 0.75rem 0.375rem 0;
+               line-height: 1.2;
+            }
+         }
+      }
+   }
+}
+
+@media (min-width: 62rem) {
+   .card {
+      display: flex;
+      position: relative;
+      max-width: 55rem;
+      background: #fff url('../images/bg-pattern-desktop.svg') no-repeat -26rem center/50rem;
+      margin: 0;
+      padding: 2rem 2rem 2rem 0;
+
+      &-image,
+      &-text {
+         flex: 1;
+      }
+
+      &-box {
+         position: absolute;
+         top: 50%;
+         left: 0;
+         width: auto;
+         transform: translate(-48.5%, -25%);
+         animation: box 3s ease-in-out infinite;
+         z-index: 10;
+      }
+
+      &-image {
+         display: flex;
+         align-items: center;
+         padding: 2rem;
+         overflow: hidden;
+
+         img {
+            position: relative;
+            left: 0;
+            width: 120%;
+            transform: translate(-25%, 0);
+         }
+      }
+
+      &-text {
+         padding: 0;
+         text-align: left;
+
+         .accordion {
+            padding-right: 2rem;
+
+            &-question {
+               font-size: 1rem;
+               margin: 0;
+
+               img {
+                  width: 0.75rem;
+               }
+            }
+
+            &-item {
+               padding: 1.3rem 0;
+            }
+
+            &-collapse {
+               .accordion-content {
+                  font-size: 0.9rem;
+               }
+            }
+         }
+      }
+   }
+
+   @keyframes box {
+      0%,
+      100% {
+         transform: translate(-48.5%, -25%);
+      }
+
+      50% {
+         transform: translate(-48.5%, -30%);
+      }
+   }
+}
